@@ -88,9 +88,9 @@ export default function fotoScroll({
         <section id={id} className={className}>
             {title ? (
                 <div className="mb-6 px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-2xl font-semibold tracking-tight text-black">
-                        {/* {title} */}
-                    </h2>
+                    {/* <h2 className="text-2xl font-semibold tracking-tight text-black"> */}
+                    {/* {title} */}
+                    {/* </h2> */}
                 </div>
             ) : null}
 
