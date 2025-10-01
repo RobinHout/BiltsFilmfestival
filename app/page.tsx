@@ -1,125 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 import React from "react";
-import type { StaticImageData } from "next/image";
-import group from "./components/Img/GroepsFotoBFF.png";
-
-// -------- Types
-type MediaItem = {
-    type: "image" | "video";
-    src: string | StaticImageData;
-    alt?: string;
-    caption?: string;
-};
-
-type MediaSectionProps = {
-    id: string;
-    title: string;
-    description?: string;
-    items: MediaItem[];
-};
-
+import FullBleedMosaic from "./components/fotoScroll";
+// import VideoGrid from "./components/trailerComponent";
 // -------- Components
-function SectionHeader({
-    title,
-    description,
-}: {
-    title: string;
-    description?: string;
-}) {
-    return (
-        <div className="mb-6 flex flex-col gap-2">
-            <h2 className="text-2xl font-semibold tracking-tight text-black">
-                {title}
-            </h2>
-            {description ? (
-                <p className="max-w-2xl text-lg text-neutral-700">
-                    {description}
-                </p>
-            ) : null}
-        </div>
-    );
-}
-
-function MediaCard({ item }: { item: MediaItem }) {
-    return (
-        <figure className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-            {item.type === "image" ? (
-                <Image
-                    src={group}
-                    alt={item.alt || "Afbeelding"}
-                    width={1200}
-                    height={800}
-                    className="h-56 w-full object-cover sm:h-64"
-                />
-            ) : (
-                <video
-                    controls
-                    className="h-56 w-full object-cover sm:h-64"
-                    aria-label={item.alt || "Video"}
-                >
-                    <source src="Tijdelijk" />
-                    Uw browser ondersteunt het video-element niet.
-                </video>
-            )}
-            {item.caption ? (
-                <figcaption className="px-4 py-3 text-base text-neutral-800">
-                    {item.caption}
-                </figcaption>
-            ) : null}
-        </figure>
-    );
-}
-
-function MediaSection({ id, title, description, items }: MediaSectionProps) {
-    return (
-        <section id={id} className="py-10">
-            <SectionHeader title={title} description={description} />
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {items.map((it, i) => (
-                    <MediaCard key={id + i} item={it} />
-                ))}
-            </div>
-        </section>
-    );
-}
-
-// -------- Demo content (vervang deze paden door eigen foto's/filmpjes)
-const demoFotos: MediaItem[] = [
-    {
-        type: "image",
-        src: group,
-        alt: "Publiek in de zaal",
-        caption: "Sfeerbeeld",
-    },
-    {
-        type: "image",
-        src: "./components/Img/GroepsFotoBFF.png",
-        alt: "Filmprojector",
-        caption: "Achter de schermen",
-    },
-    {
-        type: "image",
-        src: "./components/Img/GroepsFotoBFF.png",
-        alt: "Vrijwilligers",
-    },
-];
-
-const demoVideos: MediaItem[] = [
-    {
-        type: "video",
-        src: "/placeholder/trailer-1.mp4",
-        alt: "Trailer 1",
-        caption: "Trailer – Vrijdag",
-    },
-    {
-        type: "video",
-        src: "/placeholder/trailer-2.mp4",
-        alt: "Trailer 2",
-        caption: "Trailer – Zaterdag",
-    },
-    { type: "image", src: "/placeholder/800x500-4.jpg", alt: "Q&A" },
-];
 
 // -------- Page
 export default function HomePage() {
@@ -161,28 +44,8 @@ export default function HomePage() {
 
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                 {/* Segmenten */}
-
-                <MediaSection
-                    id="fotos"
-                    title="Foto’s"
-                    description="Een selectie beelden. Vervang de placeholders door eigen foto’s."
-                    items={demoFotos}
-                />
-
-                <MediaSection
-                    id="videos"
-                    title="Filmpjes & trailers"
-                    description="Laat korte trailers of interviews zien. MPEG/MP4 werkt in de meeste browsers."
-                    items={demoVideos}
-                />
-
-                {/* Extra segment – leeg sjabloon */}
-                <MediaSection
-                    id="extra"
-                    title="Extra segment"
-                    description="Gebruik dit blok voor aankondigingen, Q&A of juryleden. Je kunt zowel foto’s als video’s mengen."
-                    items={[]}
-                />
+                <FullBleedMosaic id="bla" title="iets" />
+                {/* <VideoGrid /> */}
             </div>
 
             {/* Footer */}
@@ -192,12 +55,13 @@ export default function HomePage() {
                         © {new Date().getFullYear()} Bilts Filmfestival
                     </p>
                     <p className="text-base">
-                        Vragen? Mail naar{" "}
+                        Al uw filmtips, passend in het karakter van de eerdere
+                        BFF-films, kunt u mailen naar:
                         <a
                             className="underline"
                             href="mailto:info@biltsfilmfestival.nl"
                         >
-                            info@biltsfilmfestival.nl
+                            info@houtkooper.nl
                         </a>
                     </p>
                 </div>
