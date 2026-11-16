@@ -12,7 +12,7 @@ export default function HomePage() {
             {/* Home Tekst */}
             <div className="mx-auto max-w-3xl px-6 py-12 text-center">
                 <h1 className="pb-4 text-3xl sm:text-4xl font-bold">
-                    Het Bilts Film Festival
+                    Het Bilts Filmfestival
                 </h1>
                 <p className="text-base sm:text-lg leading-relaxed font-sans">
                     Het Bilts Filmfestival heeft als doel het vertonen van
@@ -37,7 +37,7 @@ export default function HomePage() {
                 <div className="w-4/5 max-w-3xl my-4 flex justify-center">
                     <Image
                         src={logoBff}
-                        alt="Logo van het Bilts Film Festival"
+                        alt="Logo van het Bilts Filmfestival"
                         className="w-full h-auto object-contain"
                         priority
                     />
@@ -68,7 +68,7 @@ export default function HomePage() {
                 <div className="w-full sm:w-[45%] max-w-2xl pb-8 flex justify-center">
                     <Image
                         src={groepsFoto}
-                        alt="Groepsfoto van de commissie van het Bilts Film Festival"
+                        alt="Groepsfoto van de commissie van het Bilts Filmfestival"
                         className="w-full h-auto object-cover"
                     />
                 </div>

@@ -78,7 +78,7 @@ function MobileNav() {
             >
                 <SheetHeader>
                     <SheetTitle className="text-white">
-                        Bilts Film Festival
+                        Bilts Filmfestival
                     </SheetTitle>
                 </SheetHeader>
                 <div className="mt-6 grid gap-2">
@@ -126,14 +126,14 @@ const Header = () => {
                 <Link href="/" className="flex items-center gap-3">
                     <Image
                         src={logoBff}
-                        alt="Logo van het Bilts FilmFestival"
+                        alt="Logo van het Bilts Filmfestival"
                         width={80}
                         height={80}
                         className="p-1 object-contain w-[80px] h-auto"
                         priority
                     />
                     <h1 className="text-2xl sm:text-3xl font-bold">
-                        Bilts Film Festival
+                        Bilts Filmfestival
                     </h1>
                 </Link>
 
