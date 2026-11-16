@@ -1,70 +1,93 @@
-import Link from "next/link";
 import React from "react";
-import FullBleedMosaic from "./components/fotoScroll";
-// import VideoGrid from "./components/trailerComponent";
-// -------- Components
+import Image from "next/image";
+import VideoGrid from "./components/trailerComponent";
+import logoBff from "./components/Img/LogoBFF.png";
+import kerkBinnen from "./components/Img/KerkBinnen.png";
+import kerkBuiten from "./components/Img/KerkBuiten.png";
+import groepsFoto from "./components/Img/GroepsFotoBFF.png";
 
-// -------- Page
 export default function HomePage() {
     return (
-        <main id="main" className="bg-whit text-black ">
-            {/* Hero */}
-            <section className="border-b border-neutral-200 bg-gray-200 text-black">
-                <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-14 sm:px-6 lg:px-8">
-                    <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                        Bilts Filmfestival
-                    </h1>
-                    <p className="max-w-2xl text-lg text-black/90">
-                        Het Bilts Filmfestival heeft als doel het vertonen van
-                        films die aanzetten tot nadenken en innerlijke
-                        reflectie. Het festival richt zich op het presenteren
-                        van kwalitatief hoogstaande films die inzicht geven in
-                        menselijke emoties en ervaringen. Daarnaast streeft het
-                        festival ernaar een ontmoetingsplaats te zijn voor de
-                        gemeenschap van De Bilt en omstreken, waarbij bezoekers
-                        na de vertoningen kunnen napraten en hun indrukken
-                        delen. (bron:Vierklank)
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                        <Link
-                            href="#fotos"
-                            className="rounded-xl border border-white/30 px-5 py-2 text-base font-medium bg-white text-black hover:shadow-md hover:opacity-90"
-                        >
-                            Bekijk foto’s
-                        </Link>
-                        <Link
-                            href="#videos"
-                            className="rounded-xl bg-black px-5 py-2 text-base font-semibold text-white hover:shadow-lg hover:opacity-90"
-                        >
-                            Bekijk trailers
-                        </Link>
+        <main id="main" className="bg-white text-black min-h-screen">
+            {/* Home Tekst */}
+            <div className="mx-auto max-w-3xl px-6 py-12 text-center">
+                <h1 className="pb-4 text-3xl sm:text-4xl font-bold">
+                    Het Bilts Film Festival
+                </h1>
+                <p className="text-base sm:text-lg leading-relaxed font-sans">
+                    Het Bilts Filmfestival heeft als doel het vertonen van
+                    films die aanzetten tot nadenken en innerlijke reflectie.
+                    Het festival richt zich op het presenteren van kwalitatief
+                    hoogstaande films die inzicht geven in menselijke emoties
+                    en ervaringen. Daarnaast streeft het festival ernaar een
+                    ontmoetingsplaats te zijn voor de gemeenschap van De Bilt en
+                    omstreken, waarbij bezoekers na de vertoningen kunnen
+                    napraten en hun indrukken delen. (bron:Vierklank)
+                </p>
+            </div>
+
+            {/* Selectie Films & Trailers */}
+            <VideoGrid />
+
+            {/* Volgend Festival */}
+            <div className="flex flex-col items-center bg-[#d3d3d3] py-10 px-4 text-center">
+                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold py-4">
+                    Op vrijdag 12 februari en zaterdag 13 februari 2027!
+                </h2>
+                <div className="w-4/5 max-w-3xl my-4 flex justify-center">
+                    <Image
+                        src={logoBff}
+                        alt="Logo van het Bilts Film Festival"
+                        className="w-full h-auto object-contain"
+                        priority
+                    />
+                </div>
+                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold py-4">
+                    Locatie: Kerklaan 31 in De Bilt
+                </h2>
+            </div>
+
+            {/* Foto's onderaan zoals in BFFoud */}
+            <div className="flex flex-col items-center py-8 px-4">
+                <div className="flex flex-col sm:flex-row justify-evenly items-center gap-6 mb-8 w-full max-w-6xl">
+                    <div className="w-full sm:w-[35%] flex justify-center">
+                        <Image
+                            src={kerkBinnen}
+                            alt="Foto van de Michaelkerk van binnen"
+                            className="w-full h-auto object-cover"
+                        />
+                    </div>
+                    <div className="w-full sm:w-[35%] flex justify-center">
+                        <Image
+                            src={kerkBuiten}
+                            alt="Foto van de Michaelkerk van buiten"
+                            className="w-full h-auto object-cover"
+                        />
                     </div>
                 </div>
-            </section>
-
-            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-                {/* Segmenten */}
-                <FullBleedMosaic id="bla" title="iets" />
-                {/* <VideoGrid /> */}
+                <div className="w-full sm:w-[45%] max-w-2xl pb-8 flex justify-center">
+                    <Image
+                        src={groepsFoto}
+                        alt="Groepsfoto van de commissie van het Bilts Film Festival"
+                        className="w-full h-auto object-cover"
+                    />
+                </div>
             </div>
 
             {/* Footer */}
-            <footer className="mt-8 border-t border-neutral-200 bg-white">
-                <div className="mx-auto flex max-w-6xl flex-col items-start gap-3 px-4 py-8 text-neutral-700 sm:px-6 lg:px-8">
-                    <p className="text-base">
-                        © {new Date().getFullYear()} Bilts Filmfestival
-                    </p>
-                    <p className="text-base">
-                        Al uw filmtips, passend in het karakter van de eerdere
-                        BFF-films, kunt u mailen naar:
-                        <a
-                            className="underline"
-                            href="mailto:info@biltsfilmfestival.nl"
-                        >
-                            info@houtkooper.nl
-                        </a>
-                    </p>
-                </div>
+            <footer className="w-full bg-[#add8e6] py-10 px-6 text-center text-black">
+                <p className="text-base sm:text-lg">
+                    Al uw filmtips, passend in het karakter van de eerdere
+                    BFF-films, kunt u mailen naar:
+                </p>
+                <p className="mt-1 text-base sm:text-lg font-medium">
+                    <a
+                        href="mailto:info@biltsfilmfestival.nl"
+                        className="hover:underline"
+                    >
+                        info@biltsfilmfestival.nl
+                    </a>
+                </p>
             </footer>
         </main>
     );

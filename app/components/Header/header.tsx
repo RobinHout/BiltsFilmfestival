@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import React from "react";
+import logoBff from "../Img/LogoBFF.png";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
@@ -15,18 +16,13 @@ import {
     SheetClose,
 } from "@/components/ui/sheet";
 
-// Small classnames helper
-// function cn(...classes) {
-//     return classes.filter(Boolean).join(" ");
-// }
-
 const navItems = [
     { href: "/", label: "Home" },
     { href: "/over", label: "Over BFF" },
     { href: "/vorige", label: "Vorige festivals" },
     {
         href: "https://www.google.com/url?q=https%3A%2F%2F1drv.ms%2Ff%2Fs!As8ChS6Tponvi6h45tQDS586xlEDLw%3Fe%3Dgfk9md&sa=D&sntz=1&usg=AOvVaw14hbv5a_AegOsRYcx3vaGC",
-        label: "OneDrive",
+        label: "One Drive",
         external: true,
     },
 ];
@@ -34,7 +30,7 @@ const navItems = [
 function DesktopNav() {
     const pathname = usePathname();
     return (
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-end gap-2 self-end">
             {navItems.map(({ href, label, external }) => {
                 const isActive =
                     href !== "/"
@@ -47,22 +43,14 @@ function DesktopNav() {
                         target={external ? "_blank" : undefined}
                         rel={external ? "noopener noreferrer" : undefined}
                         className={cn(
-                            "group relative rounded-xl px-5 py-3 text-base font-medium transition-colors",
+                            "px-5 py-2.5 text-[17px] text-white border-b transition-colors",
                             isActive
-                                ? "text-white"
-                                : "text-white/90 hover:text-white"
+                                ? "border-white"
+                                : "border-transparent hover:border-white"
                         )}
                         aria-current={isActive ? "page" : undefined}
                     >
-                        <span>{label}</span>
-                        <span
-                            className={cn(
-                                "pointer-events-none absolute inset-x-3 -bottom-0.5 h-1 rounded-full transition-all",
-                                isActive
-                                    ? "bg-white"
-                                    : "bg-transparent group-hover:bg-white/70"
-                            )}
-                        />
+                        {label}
                     </Link>
                 );
             })}
@@ -89,7 +77,9 @@ function MobileNav() {
                 className="bg-black text-white border-white/20"
             >
                 <SheetHeader>
-                    <SheetTitle>Bilts Filmfestival</SheetTitle>
+                    <SheetTitle className="text-white">
+                        Bilts Film Festival
+                    </SheetTitle>
                 </SheetHeader>
                 <div className="mt-6 grid gap-2">
                     {navItems.map(({ href, label, external }) => {
@@ -108,10 +98,10 @@ function MobileNav() {
                                             : undefined
                                     }
                                     className={cn(
-                                        "rounded-xl px-4 py-3 text-lg transition-colors",
+                                        "px-4 py-3 text-lg border-b transition-colors",
                                         isActive
-                                            ? "bg-white/15 text-white"
-                                            : "text-white/95 hover:bg-white/10 hover:text-white"
+                                            ? "border-white text-white"
+                                            : "border-transparent text-white/90 hover:border-white/60 hover:text-white"
                                     )}
                                     aria-current={isActive ? "page" : undefined}
                                 >
@@ -127,40 +117,30 @@ function MobileNav() {
 }
 
 const Header = () => {
-    const [scrolled, setScrolled] = useState(false);
-
-    useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 4);
-        window.addEventListener("scroll", onScroll);
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
-
     return (
-        <motion.header
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2 }}
-            className={cn(
-                "sticky top-0 z-50 w-full border-b bg-black text-white",
-                scrolled ? "shadow-[0_2px_12px_rgba(0,0,0,0.18)]" : ""
-            )}
+        <header
+            className="sticky top-0 z-50 w-full bg-black text-white px-4 py-2.5"
             role="banner"
         >
-            <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-                {/* Site title */}
+            <div className="flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-3">
-                    <span className="text-xl font-bold tracking-tight">
-                        Bilts Filmfestival
-                    </span>
+                    <Image
+                        src={logoBff}
+                        alt="Logo van het Bilts FilmFestival"
+                        width={80}
+                        height={80}
+                        className="p-1 object-contain w-[80px] h-auto"
+                        priority
+                    />
+                    <h1 className="text-2xl sm:text-3xl font-bold">
+                        Bilts Film Festival
+                    </h1>
                 </Link>
 
-                {/* Desktop Nav */}
                 <DesktopNav />
-
-                {/* Mobile Nav */}
                 <MobileNav />
             </div>
-        </motion.header>
+        </header>
     );
 };
 
